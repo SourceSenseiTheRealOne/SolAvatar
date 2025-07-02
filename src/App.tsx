@@ -84,7 +84,7 @@ function App() {
           className="bg-mystic-teal text-white p-4 rounded-full font-inter font-semibold hover:bg-dawngold hover:text-deep-eclipse transition-all duration-300 shadow-lg"
           title="Join Waitlist"
         >
-          ⋆
+          ✦
         </button>
       </div>
     </div>
