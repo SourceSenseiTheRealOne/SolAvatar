@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, User, Clock, MapPin, Sparkles } from 'lucide-react';
+import { Mail, User, Clock, MapPin, Sparkles, ArrowRight } from 'lucide-react';
 
 export const WaitlistSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +14,6 @@ export const WaitlistSection: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would integrate with your email service (ConvertKit, etc.)
     console.log('Waitlist submission:', formData);
     setIsSubmitted(true);
   };
@@ -28,24 +27,29 @@ export const WaitlistSection: React.FC = () => {
 
   if (isSubmitted) {
     return (
-      <section className="py-20 bg-gradient-to-b from-deep-eclipse to-cosmic-purple relative">
+      <section className="py-32 relative" id="waitlist">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="bg-black bg-opacity-30 backdrop-blur-sm rounded-3xl p-12 border border-dawngold/30"
+            transition={{ duration: 1 }}
+            className="bg-cosmic-blue/30 backdrop-blur-sm rounded-3xl p-12 border border-solar-gold/50"
           >
-            <div className="w-20 h-20 mx-auto mb-6 bg-dawngold/20 rounded-full flex items-center justify-center">
-              <Sparkles className="text-dawngold animate-pulse" size={40} />
+            <div className="w-24 h-24 mx-auto mb-8 bg-solar-gold/20 rounded-full flex items-center justify-center animate-pulse-glow">
+              <Sparkles className="text-solar-gold animate-neural-pulse" size={48} />
             </div>
-            <h3 className="font-cormorant text-3xl font-bold text-dawngold mb-4">
+            <h3 className="font-display text-4xl font-bold text-solar-gold mb-6">
               Your light has been received.
             </h3>
-            <p className="font-inter text-ritual-sand text-lg leading-relaxed">
+            <p className="font-body text-xl text-stellar-silver leading-relaxed mb-8">
               Welcome to the Solar Renaissance. You are now among the chosen 111. 
-              Your SolAvatar is forming in the cosmic matrix. Prepare for illumination.
+              Your SolAvatar is forming in the cosmic matrix.
             </p>
+            <div className="space-y-4 text-stellar-silver">
+              <p className="font-body">✦ Expect your Solar Codex within 48 hours</p>
+              <p className="font-body">✦ Early access to SuryaWell app</p>
+              <p className="font-body">✦ Personalized AI onboarding with HeliOS</p>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -53,130 +57,133 @@ export const WaitlistSection: React.FC = () => {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-b from-deep-eclipse to-cosmic-purple relative" id="waitlist">
-      {/* Background elements */}
+    <section className="py-32 relative" id="waitlist">
+      {/* Background effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-dawngold opacity-5 rounded-full blur-2xl animate-float"></div>
-        <div className="absolute bottom-20 right-20 w-24 h-24 bg-mystic-teal opacity-10 rounded-full blur-xl animate-float delay-1000"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-solar-gold opacity-5 rounded-full blur-3xl animate-float-cosmic"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-mystic-teal opacity-10 rounded-full blur-2xl animate-float-cosmic" style={{ animationDelay: '3s' }}></div>
       </div>
 
-      <div className="max-w-2xl mx-auto px-6 relative">
+      <div className="max-w-4xl mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          transition={{ duration: 1 }}
+          className="text-center mb-16"
         >
-          <h2 className="font-cormorant text-4xl md:text-6xl font-bold text-dawngold mb-6">
+          <h2 className="font-display text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-solar-gradient mb-8">
             Join the First 111
           </h2>
-          <p className="font-inter text-lg text-ritual-sand leading-relaxed max-w-lg mx-auto">
-            The first 111 SolAvatars shall receive the First Solar Scroll: a ritual map, 
-            AI onboarding, and early access to the app and elixirs.
+          <p className="font-body text-2xl text-stellar-silver max-w-3xl mx-auto mb-6">
+            The first 111 SolAvatars shall receive the First Solar Scroll: 
+            a ritual map, AI onboarding, and early access to the app and elixirs.
           </p>
-          <p className="font-cormorant text-xl text-dawngold mt-4 italic">
+          <p className="font-display text-xl text-solar-gold italic">
             Enter your solar details. Become one of the 111.
           </p>
         </motion.div>
 
-        <motion.form
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          onSubmit={handleSubmit}
-          className="bg-black bg-opacity-30 backdrop-blur-sm rounded-3xl p-8 border border-dawngold/30 space-y-6"
+          transition={{ duration: 1, delay: 0.3 }}
+          className="max-w-2xl mx-auto"
         >
-          {/* Name field */}
-          <div className="relative">
-            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-dawngold">
-              <User size={20} />
-            </div>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Your sacred name"
-              required
-              className="w-full pl-12 pr-4 py-4 bg-dawngold/10 border border-dawngold/30 rounded-2xl text-voidsilver placeholder-ritual-sand focus:border-dawngold focus:bg-dawngold/20 transition-all duration-300 font-inter"
-            />
-          </div>
-
-          {/* Email field */}
-          <div className="relative">
-            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-dawngold">
-              <Mail size={20} />
-            </div>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Your digital portal"
-              required
-              className="w-full pl-12 pr-4 py-4 bg-dawngold/10 border border-dawngold/30 rounded-2xl text-voidsilver placeholder-ritual-sand focus:border-dawngold focus:bg-dawngold/20 transition-all duration-300 font-inter"
-            />
-          </div>
-
-          {/* Birth details */}
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="relative">
-              <input
-                type="date"
-                name="birthDate"
-                value={formData.birthDate}
-                onChange={handleChange}
-                placeholder="Birth date"
-                className="w-full px-4 py-4 bg-dawngold/10 border border-dawngold/30 rounded-2xl text-voidsilver placeholder-ritual-sand focus:border-dawngold focus:bg-dawngold/20 transition-all duration-300 font-inter"
-              />
-            </div>
-            <div className="relative">
-              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-dawngold">
-                <Clock size={20} />
+          <form
+            onSubmit={handleSubmit}
+            className="bg-cosmic-blue/30 backdrop-blur-sm rounded-3xl p-8 border border-solar-gold/30 space-y-6"
+          >
+            {/* Name field */}
+            <div className="relative group">
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-solar-gold group-focus-within:scale-110 transition-transform">
+                <User size={20} />
               </div>
               <input
-                type="time"
-                name="birthTime"
-                value={formData.birthTime}
+                type="text"
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
-                placeholder="Birth time"
-                className="w-full pl-12 pr-4 py-4 bg-dawngold/10 border border-dawngold/30 rounded-2xl text-voidsilver placeholder-ritual-sand focus:border-dawngold focus:bg-dawngold/20 transition-all duration-300 font-inter"
+                placeholder="Your sacred name"
+                required
+                className="w-full pl-12 pr-4 py-4 bg-deep-space/50 border border-solar-gold/30 rounded-2xl text-radiant-white placeholder-stellar-silver focus:border-solar-gold focus:bg-deep-space/70 transition-all duration-300 font-body backdrop-blur-sm"
               />
             </div>
-          </div>
 
-          {/* Location field */}
-          <div className="relative">
-            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-dawngold">
-              <MapPin size={20} />
+            {/* Email field */}
+            <div className="relative group">
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-solar-gold group-focus-within:scale-110 transition-transform">
+                <Mail size={20} />
+              </div>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Your digital portal"
+                required
+                className="w-full pl-12 pr-4 py-4 bg-deep-space/50 border border-solar-gold/30 rounded-2xl text-radiant-white placeholder-stellar-silver focus:border-solar-gold focus:bg-deep-space/70 transition-all duration-300 font-body backdrop-blur-sm"
+              />
             </div>
-            <input
-              type="text"
-              name="location"
-              value={formData.location}
-              onChange={handleChange}
-              placeholder="Your earthly coordinates"
-              className="w-full pl-12 pr-4 py-4 bg-dawngold/10 border border-dawngold/30 rounded-2xl text-voidsilver placeholder-ritual-sand focus:border-dawngold focus:bg-dawngold/20 transition-all duration-300 font-inter"
-            />
-          </div>
 
-          {/* Submit button */}
-          <motion.button
-            type="submit"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full bg-dawngold text-deep-eclipse py-4 rounded-2xl font-inter font-semibold text-lg hover:bg-solar-flare transition-all duration-300 transform hover:shadow-lg hover:shadow-dawngold/30"
-          >
-            Join the SolWaitlist
-          </motion.button>
+            {/* Birth details */}
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="relative">
+                <input
+                  type="date"
+                  name="birthDate"
+                  value={formData.birthDate}
+                  onChange={handleChange}
+                  className="w-full px-4 py-4 bg-deep-space/50 border border-solar-gold/30 rounded-2xl text-radiant-white focus:border-solar-gold focus:bg-deep-space/70 transition-all duration-300 font-body backdrop-blur-sm"
+                />
+              </div>
+              <div className="relative group">
+                <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-solar-gold group-focus-within:scale-110 transition-transform">
+                  <Clock size={20} />
+                </div>
+                <input
+                  type="time"
+                  name="birthTime"
+                  value={formData.birthTime}
+                  onChange={handleChange}
+                  className="w-full pl-12 pr-4 py-4 bg-deep-space/50 border border-solar-gold/30 rounded-2xl text-radiant-white focus:border-solar-gold focus:bg-deep-space/70 transition-all duration-300 font-body backdrop-blur-sm"
+                />
+              </div>
+            </div>
 
-          {/* Privacy note */}
-          <p className="text-center text-ritual-sand text-sm font-inter opacity-70">
-            Your sacred data is protected by cosmic law and modern encryption
-          </p>
-        </motion.form>
+            {/* Location field */}
+            <div className="relative group">
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-solar-gold group-focus-within:scale-110 transition-transform">
+                <MapPin size={20} />
+              </div>
+              <input
+                type="text"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                placeholder="Your earthly coordinates"
+                className="w-full pl-12 pr-4 py-4 bg-deep-space/50 border border-solar-gold/30 rounded-2xl text-radiant-white placeholder-stellar-silver focus:border-solar-gold focus:bg-deep-space/70 transition-all duration-300 font-body backdrop-blur-sm"
+              />
+            </div>
+
+            {/* Submit button */}
+            <motion.button
+              type="submit"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full bg-solar-gradient text-cosmic-blue py-5 rounded-2xl font-body font-bold text-lg hover:shadow-2xl hover:shadow-solar-gold/50 transition-all duration-500 transform flex items-center justify-center space-x-3 group"
+            >
+              <span>Join the SolWaitlist</span>
+              <ArrowRight className="group-hover:translate-x-1 transition-transform" size={24} />
+            </motion.button>
+
+            {/* Privacy note */}
+            <p className="text-center text-stellar-silver text-sm font-body opacity-70">
+              Your sacred data is protected by cosmic law and quantum encryption
+            </p>
+          </form>
+        </motion.div>
 
         {/* Sacred geometry decoration */}
         <motion.div
@@ -184,13 +191,13 @@ export const WaitlistSection: React.FC = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="mt-12 flex justify-center items-center space-x-2"
+          className="mt-16 flex justify-center items-center space-x-4"
         >
-          <div className="w-1 h-1 bg-dawngold rounded-full"></div>
-          <div className="w-2 h-2 bg-mystic-teal rounded-full"></div>
-          <div className="w-3 h-3 bg-solar-flare rounded-full"></div>
-          <div className="w-2 h-2 bg-mystic-teal rounded-full"></div>
-          <div className="w-1 h-1 bg-dawngold rounded-full"></div>
+          <div className="w-2 h-2 bg-solar-gold rounded-full animate-pulse"></div>
+          <div className="w-3 h-3 bg-mystic-teal rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+          <div className="w-4 h-4 bg-dawn-pink rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="w-3 h-3 bg-mystic-teal rounded-full animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+          <div className="w-2 h-2 bg-solar-gold rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
         </motion.div>
       </div>
     </section>

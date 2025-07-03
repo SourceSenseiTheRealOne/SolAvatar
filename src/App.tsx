@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { CosmicBackground } from './components/CosmicBackground';
 import { HeroSection } from './components/HeroSection';
-import { SolarQuiz } from './components/SolarQuiz';
-import { TrinitumSection } from './components/TrinitumSection';
-import { MythSection } from './components/MythSection';
-import { SolarNourishmentPreview } from './components/SolarNourishmentPreview';
+import { StorytellingSection } from './components/StorytellingSection';
+import { AppPreview } from './components/AppPreview';
+import { MarketplacePreview } from './components/MarketplacePreview';
+import { InvestorSection } from './components/InvestorSection';
 import { WaitlistSection } from './components/WaitlistSection';
+import { SolarQuiz } from './components/SolarQuiz';
 
 type CurrentView = 'home' | 'quiz' | 'waitlist';
 
@@ -16,7 +18,10 @@ function App() {
   };
 
   const handleJoinWaitlist = () => {
-    setCurrentView('waitlist');
+    const element = document.getElementById('waitlist');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleQuizComplete = () => {
@@ -27,30 +32,27 @@ function App() {
     setCurrentView('home');
   };
 
-  const scrollToWaitlist = () => {
-    const element = document.getElementById('waitlist');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   if (currentView === 'quiz') {
     return (
-      <SolarQuiz 
-        onComplete={handleQuizComplete}
-        onBack={handleBackToHome}
-      />
+      <div className="min-h-screen relative">
+        <CosmicBackground />
+        <SolarQuiz 
+          onComplete={handleQuizComplete}
+          onBack={handleBackToHome}
+        />
+      </div>
     );
   }
 
   if (currentView === 'waitlist') {
     return (
-      <div>
+      <div className="min-h-screen relative">
+        <CosmicBackground />
         <WaitlistSection />
         <div className="fixed bottom-8 left-8 z-50">
           <button
             onClick={handleBackToHome}
-            className="bg-dawngold text-deep-eclipse px-6 py-3 rounded-full font-inter font-semibold hover:bg-solar-flare transition-all duration-300 shadow-lg"
+            className="bg-solar-gold text-cosmic-blue px-6 py-3 rounded-full font-body font-bold hover:bg-radiant-white transition-all duration-300 shadow-lg hover:shadow-solar-gold/50"
           >
             ← Back to Home
           </button>
@@ -60,31 +62,35 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <CosmicBackground />
+      
       <HeroSection 
         onStartQuiz={handleStartQuiz}
-        onJoinWaitlist={scrollToWaitlist}
+        onJoinWaitlist={handleJoinWaitlist}
       />
-      <TrinitumSection />
-      <SolarNourishmentPreview />
-      <MythSection />
+      
+      <StorytellingSection />
+      <AppPreview />
+      <MarketplacePreview />
+      <InvestorSection />
       <WaitlistSection />
       
       {/* Floating navigation */}
-      <div className="fixed bottom-8 right-8 z-50 flex flex-col space-y-3">
+      <div className="fixed bottom-8 right-8 z-50 flex flex-col space-y-4">
         <button
           onClick={handleStartQuiz}
-          className="bg-dawngold text-deep-eclipse p-4 rounded-full font-inter font-semibold hover:bg-solar-flare transition-all duration-300 shadow-lg hover:shadow-dawngold/30"
+          className="group bg-solar-gold text-cosmic-blue p-4 rounded-full font-body font-bold hover:bg-radiant-white transition-all duration-300 shadow-lg hover:shadow-solar-gold/50 hover:scale-110"
           title="Start Solar Quiz"
         >
-          ✦
+          <span className="text-2xl">✦</span>
         </button>
         <button
-          onClick={scrollToWaitlist}
-          className="bg-mystic-teal text-white p-4 rounded-full font-inter font-semibold hover:bg-dawngold hover:text-deep-eclipse transition-all duration-300 shadow-lg"
+          onClick={handleJoinWaitlist}
+          className="group bg-mystic-teal text-radiant-white p-4 rounded-full font-body font-bold hover:bg-solar-gold hover:text-cosmic-blue transition-all duration-300 shadow-lg hover:scale-110"
           title="Join Waitlist"
         >
-          ✦
+          <span className="text-2xl">⋆</span>
         </button>
       </div>
     </div>

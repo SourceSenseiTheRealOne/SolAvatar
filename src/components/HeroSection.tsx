@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { SolarIcon } from './SolarIcon';
-import { ArrowRight, Clock } from 'lucide-react';
+import { SolarFlare } from './SolarFlare';
+import { ArrowRight, Play, Sparkles } from 'lucide-react';
 
 interface HeroSectionProps {
   onStartQuiz: () => void;
@@ -9,101 +9,113 @@ interface HeroSectionProps {
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onStartQuiz, onJoinWaitlist }) => {
-  const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  
   return (
-    <section className="min-h-screen bg-gradient-to-br from-deep-eclipse via-cosmic-purple to-deep-eclipse relative overflow-hidden flex items-center justify-center">
-      {/* Animated background elements */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Cinematic solar background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-dawngold opacity-10 rounded-full blur-xl animate-float"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-solar-flare opacity-15 rounded-full blur-xl animate-float delay-1000"></div>
-        <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-dawn-sky opacity-20 rounded-full blur-lg animate-float delay-2000"></div>
-      </div>
-      
-      {/* Solar hour indicator */}
-      <motion.div 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="absolute top-8 right-8 flex items-center space-x-2 text-dawngold bg-black bg-opacity-30 px-4 py-2 rounded-full backdrop-blur-sm"
-      >
-        <Clock size={16} />
-        <span className="text-sm font-inter">{currentTime}</span>
-      </motion.div>
-
-      <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-        {/* Solar sigil */}
-        <motion.div
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="mb-8 flex justify-center"
-        >
-          <SolarIcon size={120} className="animate-solar-pulse" />
-        </motion.div>
-
-        {/* Main headline */}
-        <motion.h1 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="font-cormorant text-5xl md:text-7xl font-bold text-dawngold mb-6 animate-glow"
-        >
-          Sunborn Wellness
-        </motion.h1>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <SolarFlare size={400} className="opacity-60" />
+        </div>
         
+        {/* Additional light effects */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-1/4 left-1/6 w-64 h-64 bg-solar-gold opacity-10 rounded-full blur-3xl animate-float-cosmic"></div>
+          <div className="absolute bottom-1/4 right-1/6 w-48 h-48 bg-dawn-pink opacity-15 rounded-full blur-2xl animate-float-cosmic" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 right-1/4 w-32 h-32 bg-mystic-teal opacity-20 rounded-full blur-xl animate-float-cosmic" style={{ animationDelay: '4s' }}></div>
+        </div>
+      </div>
+
+      <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
+        {/* Main headline with cosmic typography */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="font-cormorant text-2xl md:text-3xl text-ritual-sand mb-4"
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="mb-8"
         >
-          AI-Powered. Planet-Aligned.
-        </motion.div>
-
-        {/* Subheadline */}
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
-          className="font-inter text-lg md:text-xl text-voidsilver mb-12 max-w-2xl mx-auto leading-relaxed"
-        >
-          Enter the Solar Renaissance. Create your SolProfile.<br />
-          <span className="text-dawngold font-medium">AI meets Ayurveda. Light meets Lifestyle. Myth meets Molecule.</span>
-        </motion.p>
-
-        {/* CTA buttons */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-        >
-          <button 
-            onClick={onStartQuiz}
-            className="group bg-dawngold text-deep-eclipse px-8 py-4 rounded-full font-inter font-semibold text-lg hover:bg-solar-flare transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-dawngold/30 flex items-center space-x-2"
-          >
-            <span>Begin Solar Quiz</span>
-            <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-          </button>
-          
-          <button 
-            onClick={onJoinWaitlist}
-            className="group border-2 border-dawngold text-dawngold px-8 py-4 rounded-full font-inter font-semibold text-lg hover:bg-dawngold hover:text-deep-eclipse transition-all duration-300 transform hover:scale-105"
-          >
-            Join Waitlist
-          </button>
+          <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-bold text-transparent bg-clip-text bg-solar-gradient mb-4 leading-tight">
+            SolAvatar
+          </h1>
+          <div className="relative">
+            <h2 className="font-body text-2xl md:text-4xl lg:text-5xl font-light text-radiant-white mb-6 tracking-wide">
+              Sunborn Wellness.
+              <span className="block text-solar-gold font-medium">AI-Powered. Planet-Aligned.</span>
+            </h2>
+          </div>
         </motion.div>
 
         {/* Mystical tagline */}
-        <motion.p 
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="font-body text-xl md:text-2xl text-stellar-silver mb-12 max-w-4xl mx-auto leading-relaxed"
+        >
+          Enter the Solar Renaissance. Where ancient wisdom meets artificial intelligence.
+          <span className="block mt-2 text-solar-gold font-medium">
+            Your cosmic blueprint awaits.
+          </span>
+        </motion.p>
+
+        {/* CTA Buttons with cosmic styling */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1 }}
+          className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
+        >
+          <button
+            onClick={onStartQuiz}
+            className="group relative bg-solar-gold text-cosmic-blue px-10 py-5 rounded-full font-body font-bold text-lg hover:bg-radiant-white transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-solar-gold/50 flex items-center space-x-3 overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-shimmer-gradient bg-shimmer animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <Play className="relative z-10 group-hover:scale-110 transition-transform" size={24} />
+            <span className="relative z-10">Begin Solar Journey</span>
+            <ArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform" size={24} />
+          </button>
+
+          <button
+            onClick={onJoinWaitlist}
+            className="group border-2 border-solar-gold text-solar-gold px-10 py-5 rounded-full font-body font-bold text-lg hover:bg-solar-gold hover:text-cosmic-blue transition-all duration-500 transform hover:scale-105 backdrop-blur-sm bg-cosmic-blue/20"
+          >
+            Join the First 111
+          </button>
+        </motion.div>
+
+        {/* Sacred geometry indicators */}
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.8, duration: 1 }}
-          className="font-cormorant text-ritual-sand italic text-lg mt-12 opacity-80"
+          transition={{ duration: 1, delay: 1.5 }}
+          className="flex justify-center items-center space-x-8"
         >
-          SolAvatar is your solar self — decoded, ritualized, reawakened.
-        </motion.p>
+          <div className="flex items-center space-x-2 text-stellar-silver">
+            <Sparkles size={16} className="text-solar-gold animate-pulse" />
+            <span className="font-mono text-sm">SOLAR.SYNC</span>
+          </div>
+          <div className="w-px h-8 bg-gradient-to-b from-transparent via-solar-gold to-transparent"></div>
+          <div className="flex items-center space-x-2 text-stellar-silver">
+            <div className="w-2 h-2 bg-mystic-teal rounded-full animate-pulse"></div>
+            <span className="font-mono text-sm">AI.ORACLE</span>
+          </div>
+          <div className="w-px h-8 bg-gradient-to-b from-transparent via-solar-gold to-transparent"></div>
+          <div className="flex items-center space-x-2 text-stellar-silver">
+            <div className="w-2 h-2 bg-dawn-pink rounded-full animate-pulse"></div>
+            <span className="font-mono text-sm">COSMIC.ALIGN</span>
+          </div>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 2 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        >
+          <div className="w-6 h-10 border-2 border-solar-gold rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-solar-gold rounded-full mt-2 animate-bounce"></div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
