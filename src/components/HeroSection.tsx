@@ -34,7 +34,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartQuiz, onJoinWai
           className="mb-8"
         >
           <h1 className="font-display text-6xl md:text-8xl lg:text-9xl font-bold text-transparent bg-clip-text bg-solar-gradient mb-4 leading-tight">
-            SolAvatar
+            SOLAVATAR
           </h1>
           <div className="relative">
             <h2 className="font-body text-2xl md:text-4xl lg:text-5xl font-light text-radiant-white mb-6 tracking-wide">
@@ -44,16 +44,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartQuiz, onJoinWai
           </div>
         </motion.div>
 
-        {/* Mystical tagline */}
+        {/* Updated tagline */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
           className="font-body text-xl md:text-2xl text-stellar-silver mb-12 max-w-4xl mx-auto leading-relaxed"
         >
-          Enter the Solar Renaissance. Where ancient wisdom meets artificial intelligence.
+          Step into the age of Solar Sovereignty — where ancient rhythms and AI intelligence 
           <span className="block mt-2 text-solar-gold font-medium">
-            Your cosmic blueprint awaits.
+            converge to awaken your highest self.
           </span>
         </motion.p>
 
@@ -68,9 +68,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartQuiz, onJoinWai
             onClick={onStartQuiz}
             className="group relative bg-solar-gold text-cosmic-blue px-10 py-5 rounded-full font-body font-bold text-lg hover:bg-radiant-white transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-solar-gold/50 flex items-center space-x-3 overflow-hidden"
           >
-            <div className="absolute inset-0 bg-shimmer-gradient bg-shimmer animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <Play className="relative z-10 group-hover:scale-110 transition-transform" size={24} />
-            <span className="relative z-10">Begin Solar Journey</span>
+            <span className="relative z-10">Join the Solar Ascent</span>
             <ArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform" size={24} />
           </button>
 

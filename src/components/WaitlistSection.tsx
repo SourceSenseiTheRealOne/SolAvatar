@@ -73,14 +73,14 @@ export const WaitlistSection: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-solar-gradient mb-8">
-            Join the First 111
+            Ascend to the Solar Path
           </h2>
           <p className="font-body text-2xl text-stellar-silver max-w-3xl mx-auto mb-6">
-            The first 111 SolAvatars shall receive the First Solar Scroll: 
-            a ritual map, AI onboarding, and early access to the app and elixirs.
+            Join the global movement restoring harmony to humanity.
           </p>
           <p className="font-display text-xl text-solar-gold italic">
-            Enter your solar details. Become one of the 111.
+            The first 111 SolAvatars shall receive the First Solar Scroll: 
+            a ritual map, AI onboarding, and early access to the app and elixirs.
           </p>
         </motion.div>
 
@@ -174,7 +174,7 @@ export const WaitlistSection: React.FC = () => {
               whileTap={{ scale: 0.98 }}
               className="w-full bg-solar-gradient text-cosmic-blue py-5 rounded-2xl font-body font-bold text-lg hover:shadow-2xl hover:shadow-solar-gold/50 transition-all duration-500 transform flex items-center justify-center space-x-3 group"
             >
-              <span>Join the SolWaitlist</span>
+              <span>Sign Up for Early Access</span>
               <ArrowRight className="group-hover:translate-x-1 transition-transform" size={24} />
             </motion.button>
 

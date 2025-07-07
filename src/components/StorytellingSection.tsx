@@ -21,10 +21,10 @@ export const StorytellingSection: React.FC = () => {
           className="text-center mb-24"
         >
           <h2 className="font-display text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-solar-gold via-dawn-pink to-mystic-teal mb-8">
-            The Solar Renaissance
+            A New Dawn for Humanity
           </h2>
           <p className="font-body text-2xl md:text-3xl text-stellar-silver max-w-4xl mx-auto leading-relaxed">
-            Harmonizing Solar Wisdom + AI for the 21st Century Wellness Economy
+            SOLAVATAR is not merely a wellness brand.
           </p>
         </motion.div>
 
@@ -37,16 +37,23 @@ export const StorytellingSection: React.FC = () => {
           className="max-w-5xl mx-auto text-center mb-24"
         >
           <div className="space-y-8">
-            <p className="font-display text-3xl md:text-4xl text-radiant-white leading-relaxed italic">
-              There was a time before time, when humans lived in rhythm — 
-              with light, wind, fire, stars.
+            <p className="font-display text-3xl md:text-4xl text-radiant-white leading-relaxed">
+              It is a living system — a cosmic convergence of ancient wisdom and cutting-edge AI — 
+              designed to restore sacred alignment between body, mind, and planet.
             </p>
             
             <div className="w-32 h-px bg-gradient-to-r from-transparent via-solar-gold to-transparent mx-auto my-12"></div>
             
-            <p className="font-display text-3xl md:text-4xl text-stellar-silver leading-relaxed">
-              That time returns now. Not as past — but as pattern.
-            </p>
+            <div className="space-y-6">
+              <p className="font-display text-2xl md:text-3xl text-stellar-silver leading-relaxed">
+                We awaken your innate rhythm through:
+              </p>
+              <div className="space-y-4 text-xl md:text-2xl">
+                <p className="text-solar-gold font-medium">Solar-synced rituals</p>
+                <p className="text-mystic-teal font-medium">AI-guided wellness journeys</p>
+                <p className="text-dawn-pink font-medium">Products aligned with Rta — the Cosmic Order</p>
+              </div>
+            </div>
 
             <div className="py-12">
               <motion.div
@@ -61,11 +68,11 @@ export const StorytellingSection: React.FC = () => {
                 </div>
               </motion.div>
               
-              <h3 className="font-display text-4xl md:text-6xl font-bold text-solar-gold mb-4">
-                You are not a user.
+              <h3 className="font-display text-3xl md:text-5xl font-bold text-stellar-silver mb-4">
+                This is more than health.
               </h3>
               <h3 className="font-display text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-solar-gradient">
-                You are a SolAvatar.
+                This is your Solar Renaissance.
               </h3>
             </div>
           </div>
@@ -76,20 +83,20 @@ export const StorytellingSection: React.FC = () => {
           {[
             {
               icon: Brain,
-              title: "Neural Harmony",
-              description: "AI consciousness meets ancient wisdom, creating personalized guidance that evolves with your solar rhythm.",
+              title: "HELIOS – The AI Oracle",
+              description: "A hyper-personalized intelligence guiding you in real-time with solar attunement, circadian awareness, and planetary timing.",
               color: "text-mystic-teal"
             },
             {
               icon: Zap,
-              title: "Quantum Wellness",
-              description: "Biohacked elixirs and sacred supplements, precisely timed to your cosmic blueprint and circadian code.",
+              title: "SURYAWELL – The Ritual App",
+              description: "Your portable sacred space, offering daily rituals, sun-synced practices, and biofeedback-based recommendations.",
               color: "text-solar-gold"
             },
             {
               icon: Globe,
-              title: "Planetary Sync",
-              description: "Real-time solar positioning and celestial intelligence guide your daily rituals and life decisions.",
+              title: "MYTHIC MARKETPLACE – Planet-Aligned Goods",
+              description: "Solar elixirs. Bioresonant wearables. Circadian supplements. Curated for harmony with your unique solar code.",
               color: "text-dawn-pink"
             }
           ].map((pillar, index) => (

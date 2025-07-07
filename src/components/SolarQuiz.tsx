@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ArrowLeft, Sunrise, Moon, Mountain, Waves, Flame, Wind, Sparkles } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Sunrise, Moon, Mountain, Waves, Flame, Wind, Sparkles, Clock, Utensils, Activity } from 'lucide-react';
 
 interface QuizQuestion {
   id: number;
@@ -20,102 +20,113 @@ interface SolarQuizProps {
 const questions: QuizQuestion[] = [
   {
     id: 1,
-    question: "When does your inner fire burn brightest?",
+    question: "When do you feel most alive and vibrant?",
     options: [
-      { text: "Dawn breaks and I rise fresh", value: "dawn", icon: <Sunrise size={24} /> },
-      { text: "Midday sun at its peak", value: "midday", icon: <Flame size={24} /> },
-      { text: "Evening twilight whispers", value: "evening", icon: <Moon size={24} /> },
-      { text: "Deep night when the world sleeps", value: "night", icon: <Moon size={24} /> }
+      { text: "Just before dawn (Pre-sunrise)", value: "pre-dawn", icon: <Sunrise size={24} /> },
+      { text: "Morning (6–10am)", value: "morning", icon: <Sunrise size={24} /> },
+      { text: "Afternoon (10am–2pm)", value: "afternoon", icon: <Flame size={24} /> },
+      { text: "Evening (5–9pm)", value: "evening", icon: <Moon size={24} /> },
+      { text: "Late night (After midnight)", value: "late-night", icon: <Moon size={24} /> }
     ]
   },
   {
     id: 2,
-    question: "How does your breath respond to life's storms?",
+    question: "How does your energy feel during the day?",
     options: [
-      { text: "Quick and light, like a bird", value: "quick", icon: <Wind size={24} /> },
-      { text: "Slow and deep, like the ocean", value: "deep", icon: <Waves size={24} /> },
-      { text: "I hold my breath and pause", value: "hold", icon: <Mountain size={24} /> },
-      { text: "I forget to breathe entirely", value: "forget", icon: <Wind size={24} /> }
+      { text: "Steady and strong like a midday sun", value: "steady", icon: <Flame size={24} /> },
+      { text: "Rising slowly like the early dawn", value: "rising", icon: <Sunrise size={24} /> },
+      { text: "Intense bursts, followed by lulls", value: "bursts", icon: <Wind size={24} /> },
+      { text: "Calm and reflective like sunset", value: "calm", icon: <Moon size={24} /> },
+      { text: "Unpredictable, like shifting clouds", value: "unpredictable", icon: <Waves size={24} /> }
     ]
   },
   {
     id: 3,
-    question: "Which realm calls to your soul?",
+    question: "Your sleep pattern most resembles:",
     options: [
-      { text: "Desert of infinite light", value: "desert", icon: <Sunrise size={24} /> },
-      { text: "Forest of ancient wisdom", value: "forest", icon: <Mountain size={24} /> },
-      { text: "Ocean of endless depth", value: "ocean", icon: <Waves size={24} /> },
-      { text: "Mountain of sacred silence", value: "mountain", icon: <Mountain size={24} /> }
+      { text: "Early to bed, early to rise (like a yogi)", value: "early-bird", icon: <Sunrise size={24} /> },
+      { text: "Night owl, alive in the dark hours", value: "night-owl", icon: <Moon size={24} /> },
+      { text: "Sleep comes easy, but mornings feel heavy", value: "heavy-sleeper", icon: <Mountain size={24} /> },
+      { text: "Sleep varies wildly with no fixed schedule", value: "variable", icon: <Wind size={24} /> }
     ]
   },
   {
     id: 4,
-    question: "What is your elemental essence?",
+    question: "Your ideal meal timing feels aligned when:",
     options: [
-      { text: "Fire - Transformation & Power", value: "fire", icon: <Flame size={24} /> },
-      { text: "Air - Movement & Inspiration", value: "air", icon: <Wind size={24} /> },
-      { text: "Water - Flow & Intuition", value: "water", icon: <Waves size={24} /> },
-      { text: "Earth - Stability & Grounding", value: "earth", icon: <Mountain size={24} /> }
+      { text: "Breakfast is hearty and energizing", value: "hearty-breakfast", icon: <Utensils size={24} /> },
+      { text: "A light lunch sustains you best", value: "light-lunch", icon: <Utensils size={24} /> },
+      { text: "Dinner is the main meal of the day", value: "main-dinner", icon: <Utensils size={24} /> },
+      { text: "Small meals throughout feel natural", value: "small-meals", icon: <Utensils size={24} /> }
     ]
   },
   {
     id: 5,
-    question: "Choose your SolAvatar path:",
+    question: "Your ideal movement feels like:",
     options: [
-      { text: "The Solar Seer - Vision & Prophecy", value: "seer", icon: <Sunrise size={24} /> },
-      { text: "The Dawn Dancer - Joy & Movement", value: "dancer", icon: <Wind size={24} /> },
-      { text: "The Still Flame - Peace & Presence", value: "flame", icon: <Flame size={24} /> },
-      { text: "The Light Weaver - Creation & Art", value: "weaver", icon: <Waves size={24} /> }
+      { text: "Energizing sun salutations at dawn", value: "dawn-movement", icon: <Activity size={24} /> },
+      { text: "Midday power exercises", value: "power-exercise", icon: <Activity size={24} /> },
+      { text: "Slow evening stretches/yoga", value: "evening-yoga", icon: <Activity size={24} /> },
+      { text: "Randomized bursts when energy strikes", value: "random-bursts", icon: <Activity size={24} /> }
     ]
   }
 ];
 
 const archetypes = {
-  "Solar Seer": {
-    title: "The Solar Seer",
-    description: "You are a vessel of ancient wisdom, attuned to the cosmic rhythms that others cannot perceive. Your path is one of vision and intuitive knowing.",
-    constitution: "Primarily Vata with Pitta influence",
-    chronotype: "Dawn-oriented with natural circadian sensitivity",
-    element: "Fire + Air",
-    rituals: ["Dawn meditation", "Solar gazing", "Breathwork at sunrise", "Intuitive journaling"],
+  "Solar Flare": {
+    title: "Solar Flare",
+    subtitle: "Pitta Dominant",
+    description: "You are the midday Sun — intense, vibrant, purpose-driven. Balance your fire with cooling practices and lunar rituals.",
+    constitution: "Pitta-dominant with strong digestive fire",
+    chronotype: "Peak energy during midday hours",
+    element: "Fire + Earth",
+    rituals: ["Cooling breath practices", "Midday power meditation", "Moon water ceremonies", "Grounding earth connection"],
     color: "text-solar-gold"
   },
-  "Dawn Dancer": {
-    title: "The Dawn Dancer", 
-    description: "Movement is your prayer, and joy flows through you like sunlight through crystal. You embody the playful spirit of awakening life.",
-    constitution: "Balanced Pitta-Vata with strong Agni",
-    chronotype: "Early riser with peak energy at dawn",
-    element: "Air + Fire",
-    rituals: ["Moving meditation", "Solar salutations", "Rhythmic breathing", "Celebration practices"],
+  "Dawn Bloom": {
+    title: "Dawn Bloom", 
+    subtitle: "Kapha Dominant",
+    description: "You are the gentle dawn — nurturing, grounded, steady. Awaken with invigorating rituals to spark vitality.",
+    constitution: "Kapha-dominant with stable, grounding energy",
+    chronotype: "Slow to wake, steady throughout day",
+    element: "Earth + Water",
+    rituals: ["Energizing morning breath", "Warming spice ceremonies", "Movement activation", "Solar charging practices"],
     color: "text-dawn-pink"
   },
-  "Still Flame": {
-    title: "The Still Flame",
-    description: "In your stillness burns the steady flame of presence. You are the calm center around which the world can find its balance.",
-    constitution: "Kapha-dominant with stable Pitta",
-    chronotype: "Steady throughout the day",
-    element: "Earth + Fire", 
-    rituals: ["Silent meditation", "Candle contemplation", "Grounding practices", "Sacred holding space"],
+  "Twilight Breeze": {
+    title: "Twilight Breeze",
+    subtitle: "Vata Dominant", 
+    description: "You are the shifting twilight — creative, free-spirited, quick-moving. Anchor with grounding rituals and warmth.",
+    constitution: "Vata-dominant with variable, creative energy",
+    chronotype: "Variable energy patterns, evening creativity",
+    element: "Air + Space",
+    rituals: ["Grounding meditation", "Warm oil ceremonies", "Rhythmic breathing", "Sacred routine building"],
     color: "text-mystic-teal"
   },
-  "Light Weaver": {
-    title: "The Light Weaver",
-    description: "You transform the mundane into the magical, weaving light and beauty into everything you touch. Creativity is your spiritual practice.",
-    constitution: "Pitta-Vata with artistic temperament",
-    chronotype: "Variable, responds to inspiration",
-    element: "Water + Fire",
-    rituals: ["Creative expression", "Color meditation", "Sacred crafting", "Beauty cultivation"],
+  "Cosmic Weaver": {
+    title: "Cosmic Weaver",
+    subtitle: "Tri-Doshic Balance",
+    description: "You embody the cosmic balance — adaptable, intuitive, flowing with natural rhythms. Your path is one of harmonious integration.",
+    constitution: "Balanced tri-doshic constitution",
+    chronotype: "Adaptable to natural light cycles",
+    element: "All Elements in Harmony",
+    rituals: ["Seasonal adaptation practices", "Intuitive movement", "Elemental balancing", "Cosmic alignment ceremonies"],
     color: "text-dusk-lavender"
   }
 };
 
 export const SolarQuiz: React.FC<SolarQuizProps> = ({ onComplete, onBack }) => {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(-1); // Start with intro screen
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState<any>(null);
 
   const handleAnswer = (value: string) => {
+    if (currentQuestion === -1) {
+      setCurrentQuestion(0);
+      return;
+    }
+
     const newAnswers = { ...answers, [questions[currentQuestion].id]: value };
     setAnswers(newAnswers);
 
@@ -131,24 +142,77 @@ export const SolarQuiz: React.FC<SolarQuizProps> = ({ onComplete, onBack }) => {
   const calculateProfile = (answers: Record<number, string>) => {
     const values = Object.values(answers);
     
-    if (values.includes('seer') || (values.includes('dawn') && values.includes('desert'))) {
-      return archetypes["Solar Seer"];
-    } else if (values.includes('dancer') || (values.includes('quick') && values.includes('midday'))) {
-      return archetypes["Dawn Dancer"];
-    } else if (values.includes('flame') || (values.includes('hold') && values.includes('mountain'))) {
-      return archetypes["Still Flame"];
-    } else {
-      return archetypes["Light Weaver"];
+    // Solar Flare (Pitta) - midday energy, steady, power exercises
+    if (values.includes('afternoon') || values.includes('steady') || values.includes('power-exercise')) {
+      return archetypes["Solar Flare"];
+    }
+    // Dawn Bloom (Kapha) - heavy sleeper, hearty breakfast, slow rising
+    else if (values.includes('heavy-sleeper') || values.includes('hearty-breakfast') || values.includes('rising')) {
+      return archetypes["Dawn Bloom"];
+    }
+    // Twilight Breeze (Vata) - variable, unpredictable, random bursts
+    else if (values.includes('variable') || values.includes('unpredictable') || values.includes('random-bursts')) {
+      return archetypes["Twilight Breeze"];
+    }
+    // Default to Cosmic Weaver
+    else {
+      return archetypes["Cosmic Weaver"];
     }
   };
 
   const goBack = () => {
     if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1);
+    } else if (currentQuestion === 0) {
+      setCurrentQuestion(-1);
     } else {
       onBack();
     }
   };
+
+  // Intro screen
+  if (currentQuestion === -1) {
+    return (
+      <section className="min-h-screen flex items-center justify-center px-6 relative">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="max-w-3xl mx-auto text-center bg-cosmic-blue/30 backdrop-blur-sm rounded-3xl p-12 border border-solar-gold/50"
+        >
+          <div className="w-32 h-32 mx-auto mb-8 bg-solar-gold/20 rounded-full flex items-center justify-center animate-pulse-glow">
+            <Sparkles className="text-solar-gold animate-neural-pulse" size={64} />
+          </div>
+          
+          <h1 className="font-display text-4xl md:text-5xl font-bold text-solar-gold mb-6">
+            Which Solar Archetype Guides Your Wellness Path?
+          </h1>
+          
+          <p className="font-body text-xl text-stellar-silver mb-8 leading-relaxed">
+            Discover your unique solar essence and awaken your circadian intelligence.
+          </p>
+          
+          <div className="bg-deep-space/50 rounded-2xl p-8 mb-8 border border-solar-gold/30">
+            <p className="font-display text-2xl text-radiant-white mb-4 italic">
+              "Welcome, Seeker."
+            </p>
+            <p className="font-body text-lg text-stellar-silver leading-relaxed">
+              Within you lies a rhythm ancient as the stars. This journey will unveil your Solar Archetype — 
+              guiding you to align with your highest energy flow.
+            </p>
+          </div>
+
+          <button
+            onClick={() => handleAnswer('')}
+            className="bg-solar-gradient text-cosmic-blue px-10 py-4 rounded-full font-body font-bold text-lg hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-3 mx-auto shadow-lg hover:shadow-solar-gold/50"
+          >
+            <span>Begin</span>
+            <ArrowRight size={24} />
+          </button>
+        </motion.div>
+      </section>
+    );
+  }
 
   if (showResult) {
     return (
@@ -163,9 +227,12 @@ export const SolarQuiz: React.FC<SolarQuizProps> = ({ onComplete, onBack }) => {
             <div className="w-32 h-32 mx-auto mb-8 bg-solar-gold/20 rounded-full flex items-center justify-center animate-pulse-glow">
               <Sparkles className="text-solar-gold animate-neural-pulse" size={64} />
             </div>
-            <h2 className={`font-display text-5xl md:text-6xl font-bold ${result.color} mb-6`}>
+            <h2 className={`font-display text-5xl md:text-6xl font-bold ${result.color} mb-4`}>
               {result.title}
             </h2>
+            <h3 className="font-body text-xl text-stellar-silver mb-6">
+              {result.subtitle}
+            </h3>
             <p className="font-body text-xl text-stellar-silver leading-relaxed max-w-3xl mx-auto">
               {result.description}
             </p>
@@ -202,7 +269,7 @@ export const SolarQuiz: React.FC<SolarQuizProps> = ({ onComplete, onBack }) => {
               onClick={() => onComplete(result)}
               className="bg-solar-gradient text-cosmic-blue px-10 py-4 rounded-full font-body font-bold text-lg hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-3 shadow-lg hover:shadow-solar-gold/50"
             >
-              <span>Get Your Ritual Map</span>
+              <span>Begin Your Journey</span>
               <ArrowRight size={24} />
             </button>
             <button 

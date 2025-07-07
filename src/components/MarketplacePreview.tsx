@@ -41,14 +41,10 @@ export const MarketplacePreview: React.FC = () => {
           className="text-center mb-20"
         >
           <h2 className="font-display text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-dawn-pink to-mystic-teal mb-8">
-            SolTerra
+            Offerings of the Solar Path
           </h2>
           <p className="font-body text-2xl text-stellar-silver max-w-3xl mx-auto mb-4">
-            The Planet-Aligned Market
-          </p>
-          <p className="font-body text-lg text-stellar-silver max-w-4xl mx-auto">
-            Receive what your SolProfile prescribes. Biohacked elixirs, solar supplements, 
-            and sacred wellness kits, timed to your chart and delivered with AI-personalized guidance.
+            Discover wellness products crafted in alignment with the Sun's rhythms and the Earth's intelligence.
           </p>
         </motion.div>
 
