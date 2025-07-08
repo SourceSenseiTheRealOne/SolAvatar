@@ -3,26 +3,30 @@ import { motion } from 'framer-motion';
 import { ShoppingBag, Sparkles, Leaf, Zap } from 'lucide-react';
 
 export const MarketplacePreview: React.FC = () => {
+  const handleNotifyClick = () => {
+    const waitlistElement = document.getElementById('waitlist');
+    if (waitlistElement) {
+      waitlistElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const products = [
     {
       name: "Solar Dawn Elixir",
       description: "Adaptogenic morning blend synchronized to your circadian peak",
-      price: "$89",
-      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "https://images.pexels.com/photos/6207433/pexels-photo-6207433.jpeg?auto=compress&cs=tinysrgb&w=400",
       color: "border-solar-gold"
     },
     {
       name: "Cosmic Clarity Kit",
       description: "Neural enhancement supplements timed to your solar profile",
-      price: "$156",
-      image: "https://images.pexels.com/photos/6207433/pexels-photo-6207433.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=400",
       color: "border-mystic-teal"
     },
     {
       name: "Ritual Renewal Set",
       description: "Sacred tools and aromatics for daily solar ceremonies",
-      price: "$234",
-      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "https://images.pexels.com/photos/7195706/pexels-photo-7195706.jpeg?auto=compress&cs=tinysrgb&w=400",
       color: "border-dawn-pink"
     }
   ];
@@ -69,6 +73,11 @@ export const MarketplacePreview: React.FC = () => {
                 <div className="absolute top-4 right-4">
                   <Sparkles className="text-solar-gold animate-pulse" size={24} />
                 </div>
+                <div className="absolute bottom-4 left-4">
+                  <span className="bg-cosmic-blue/80 text-solar-gold px-3 py-1 rounded-full text-xs font-body font-medium backdrop-blur-sm border border-solar-gold/30">
+                    Coming Soon
+                  </span>
+                </div>
               </div>
               
               <div className="p-6">
@@ -78,12 +87,12 @@ export const MarketplacePreview: React.FC = () => {
                 <p className="font-body text-stellar-silver text-sm mb-4 leading-relaxed">
                   {product.description}
                 </p>
-                <div className="flex items-center justify-between">
-                  <span className="font-body text-2xl font-bold text-solar-gold">
-                    {product.price}
-                  </span>
-                  <button className="bg-solar-gold/20 text-solar-gold px-4 py-2 rounded-full font-body font-medium hover:bg-solar-gold hover:text-cosmic-blue transition-all duration-300">
-                    Add to Kit
+                <div className="flex items-center justify-center">
+                  <button 
+                    onClick={handleNotifyClick}
+                    className="bg-solar-gold/20 text-solar-gold px-6 py-3 rounded-full font-body font-medium hover:bg-solar-gold hover:text-cosmic-blue transition-all duration-300 w-full"
+                  >
+                    Notify Me
                   </button>
                 </div>
               </div>

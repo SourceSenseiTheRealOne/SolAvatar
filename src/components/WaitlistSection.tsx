@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, User, Clock, MapPin, Sparkles, ArrowRight } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export const WaitlistSection: React.FC = () => {
+  const form = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,17 +13,49 @@ export const WaitlistSection: React.FC = () => {
     location: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Waitlist submission:', formData);
-    setIsSubmitted(true);
+    setIsLoading(true);
+
+    // EmailJS configuration - replace with your actual values
+    emailjs
+      .sendForm(
+        'YOUR_SERVICE_ID',        // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID',       // Replace with your EmailJS template ID
+        form.current!,
+        'YOUR_PUBLIC_KEY'         // Replace with your EmailJS public key
+      )
+      .then(
+        () => {
+          console.log('SUCCESS! Waitlist submission sent.');
+          setIsSubmitted(true);
+          setIsLoading(false);
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+          setIsLoading(false);
+          // You might want to show an error message to the user here
+        }
+      );
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    // Map form field names to state keys
+    const fieldMap: Record<string, keyof typeof formData> = {
+      'user_name': 'name',
+      'user_email': 'email',
+      'birth_date': 'birthDate',
+      'birth_time': 'birthTime',
+      'user_location': 'location'
+    };
+    
+    const stateKey = fieldMap[name] || name as keyof typeof formData;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [stateKey]: value
     });
   };
 
@@ -92,6 +126,7 @@ export const WaitlistSection: React.FC = () => {
           className="max-w-2xl mx-auto"
         >
           <form
+            ref={form}
             onSubmit={handleSubmit}
             className="bg-cosmic-blue/30 backdrop-blur-sm rounded-3xl p-8 border border-solar-gold/30 space-y-6"
           >
@@ -102,7 +137,7 @@ export const WaitlistSection: React.FC = () => {
               </div>
               <input
                 type="text"
-                name="name"
+                name="user_name"
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your sacred name"
@@ -118,7 +153,7 @@ export const WaitlistSection: React.FC = () => {
               </div>
               <input
                 type="email"
-                name="email"
+                name="user_email"
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Your digital portal"
@@ -132,7 +167,7 @@ export const WaitlistSection: React.FC = () => {
               <div className="relative">
                 <input
                   type="date"
-                  name="birthDate"
+                  name="birth_date"
                   value={formData.birthDate}
                   onChange={handleChange}
                   className="w-full px-4 py-4 bg-deep-space/50 border border-solar-gold/30 rounded-2xl text-radiant-white focus:border-solar-gold focus:bg-deep-space/70 transition-all duration-300 font-body backdrop-blur-sm"
@@ -144,7 +179,7 @@ export const WaitlistSection: React.FC = () => {
                 </div>
                 <input
                   type="time"
-                  name="birthTime"
+                  name="birth_time"
                   value={formData.birthTime}
                   onChange={handleChange}
                   className="w-full pl-12 pr-4 py-4 bg-deep-space/50 border border-solar-gold/30 rounded-2xl text-radiant-white focus:border-solar-gold focus:bg-deep-space/70 transition-all duration-300 font-body backdrop-blur-sm"
@@ -159,7 +194,7 @@ export const WaitlistSection: React.FC = () => {
               </div>
               <input
                 type="text"
-                name="location"
+                name="user_location"
                 value={formData.location}
                 onChange={handleChange}
                 placeholder="Your earthly coordinates"
@@ -170,12 +205,14 @@ export const WaitlistSection: React.FC = () => {
             {/* Submit button */}
             <motion.button
               type="submit"
+              disabled={isLoading}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-solar-gradient text-cosmic-blue py-5 rounded-2xl font-body font-bold text-lg hover:shadow-2xl hover:shadow-solar-gold/50 transition-all duration-500 transform flex items-center justify-center space-x-3 group"
+              className="w-full bg-solar-gradient text-cosmic-blue py-5 rounded-2xl font-body font-bold text-lg hover:shadow-2xl hover:shadow-solar-gold/50 transition-all duration-500 transform flex items-center justify-center space-x-3 group disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <span>Sign Up for Early Access</span>
-              <ArrowRight className="group-hover:translate-x-1 transition-transform" size={24} />
+              <span>{isLoading ? 'Ascending...' : 'Sign Up for Early Access'}</span>
+              {!isLoading && <ArrowRight className="group-hover:translate-x-1 transition-transform" size={24} />}
+              {isLoading && <div className="w-6 h-6 border-2 border-cosmic-blue border-t-transparent rounded-full animate-spin"></div>}
             </motion.button>
 
             {/* Privacy note */}
